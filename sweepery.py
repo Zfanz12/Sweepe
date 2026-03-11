@@ -1660,7 +1660,12 @@ app = ctk.CTk()
 app.title("Sweepe")
 app.resizable(False, False)
 app.configure(fg_color=BG)
+
+# FIX: make the raw underlying Tk window background dark
+# so any flash during page transitions is dark (#0c0c0e) instead of white
 app.update_idletasks()
+app.tk.call(app._w, "configure", "-background", BG)
+
 center_window(1060, 720)
 
 navbar = ctk.CTkFrame(app, fg_color=BG_NAV, height=48, corner_radius=0)
